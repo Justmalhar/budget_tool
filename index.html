@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Budget Tracker</title>
+
+    <!-- load stylesheets -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  <!-- Google web font "Open Sans" -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">                                      <!-- Bootstrap style -->
+    <link rel="stylesheet" href="css/magnific-popup.css">                                <!-- Magnific pop up style, http://dimsemenov.com/plugins/magnific-popup/ -->
+	<link rel="stylesheet" href="css/templatemo-style.css">                                   <!-- Templatemo style -->
+	<script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+          <![endif]-->
+</head>
+<body>        
+    <div class="container">
+        <div class="row">
+            <div class="tm-left-right-container">
+                <!-- Left column: logo and menu -->
+                <div class="tm-blue-bg tm-left-column">                        
+                    <div class="tm-logo-div text-xs-center">
+                        <img src="img/logo.png" alt="Logo" />
+                        <h1 class="tm-site-name">Budget Tracker</h1>
+                    </div>
+                    <nav class="tm-main-nav">
+                        <ul class="tm-main-nav-ul">
+                            <li class="tm-nav-item">
+                                <a onclick="choose_menu(1);" class="tm-nav-item-link">Welcome</a>
+                            </li>
+                            <li class="tm-nav-item">
+                                <a onclick="choose_menu(2);" class="tm-nav-item-link">Monthly Income</a>
+                            </li>
+                            <li class="tm-nav-item">
+                                <a onclick="choose_menu(3);" class="tm-nav-item-link">Rent</a>
+                            </li>
+                            <li class="tm-nav-item">
+                                <a onclick="choose_menu(4);" class="tm-nav-item-link">Utilities</a>
+                            </li>
+                            <li class="tm-nav-item">
+                                <a onclick="choose_menu(5);" class="tm-nav-item-link">Food</a>
+                            </li>
+                            <li class="tm-nav-item">
+                                <a onclick="choose_menu(6);" class="tm-nav-item-link">Other</a>
+							</li>
+							<li class="tm-nav-item">
+								<a onclick="choose_menu(7);" class="tm-nav-item-link">Calculate Hourly Rate</a>
+							</li>
+                        </ul>
+                    </nav>                                         
+                </div> <!-- Left column: logo and menu -->
+                    
+                <!-- Right column: content -->
+                <div class="tm-right-column">
+                    <div class="tm-content-div">
+						<div class="intro_page next" id="1" hidden=true>
+							<figure>
+								<img width="100%" src="img/Budget-Tracking.jpg" alt="Header image" class="img-fluid">    
+							</figure>
+                            <!-- Welcome section -->
+                            <section id="welcome" class="tm-section">
+                                <header>
+                                    <h2 class="tm-blue-text tm-welcome-title tm-margin-b-45">Welcome to your Finance and Budget Tracker</h2>
+                                </header>
+                           </section>
+						<div style="margin-top:10px;margin-bottom:20px;" align="center"><button type="button" onclick="nextEntry(1);" class="btn btn-info btn-lg" id="section">Enter Income Values</button></div>
+						</div>
+					<div id="all_sections">	
+						<div class="income next" id="2" hidden=true>
+						<h1 style="color:#006599;" align="center">MONTHLY INCOME</h1>
+						<button onclick="add_new_field(1);" type="button" style="float:left;margin-bottom:10px;" class="btn btn-primary">+ Add New</button>
+						<button onclick="nextEntry(1);" type="button" style="float:right;margin-bottom:10px;" class="btn btn-primary" id="section">Next Category</button>	
+							<div class="table-responsive">          
+								<table id="table-1" class="table table-bordered table-hover">
+									<thead>
+									  <tr class="table table-info">
+										<th><h3>SOURCE</h3></th>
+										<th><h3>AMOUNT($)</h3></th>
+									  </tr>
+									</thead>
+									<tbody>
+									<tr style="background-color: lightgreen">
+										<td><h3><label id="income-src-1">Job Income</label></h3></td>
+										<td><input type="number" style="width:200px;" class="form-control input-sm income_count" id="income-amt-1"/></td>
+									</tr>
+									<tr>
+										<td><h3><label style="float:right;" >Total</label></h3></td>
+										<td><input type="text" style="width:200px;" class="form-control input-sm" id="total-1"/></td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+							<div style="margin-top:20px;margin-bottom:20px;" id="lower_buttons" align="center"><button type="button" onclick="get_values(1)" class="btn btn-info btn-lg">Draw Income Chart</button></div>
+
+						</div>
+						
+						
+						<div class="rent next" id="3" hidden=true>
+						<h1 style="color:#006599;" align="center">MONTHLY RENT</h1>
+						<button onclick="add_new_field(2);" type="button" style="float:left;margin-bottom:10px;" class="btn btn-primary">+ Add New</button>
+						<button onclick="nextEntry(1);" type="button" style="float:right;margin-bottom:10px;" class="btn btn-primary" id="section">Next Category</button>
+						<button onclick="nextEntry(0);" type="button" style="float:right;margin-bottom:10px;margin-right:5px" class="btn btn-primary" id="section">Previous Category</button>
+							<div class="table-responsive">          
+								<table id="table-2" class="table table-bordered table-hover">
+									<thead>
+									  <tr class="table table-info">
+										<th><h3>SOURCE</h3></th>
+										<th><h3>AMOUNT($)</h3></th>
+									  </tr>
+									</thead>
+									<tbody>
+									<tr style="background-color: salmon">
+										<td><h3><label id="rent-src-1">Apartment Rent</label></h3></td>
+										<td><input type="text" style="width:200px;" class="form-control input-sm rent_count" id="rent-amt-1"/></td>
+									</tr>
+									<tr>
+										<td><h3><label style="float:right;" >Total</label></h3></td>
+										<td><input type="text" style="width:200px;" class="form-control input-sm" id="total-2"/></td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+							<div style="margin-top:20px;margin-bottom:20px;" id="lower_buttons" align="center"><button type="button" onclick="get_values(0);" class="btn btn-info btn-lg">Draw Expenditure Chart</button></div>
+
+						</div>
+						
+						
+						<div class="utilities next" id="4" hidden=true>
+						<h1 style="color:#006599;" align="center">UTILITIES</h1>
+						<button onclick="add_new_field(3);" type="button" style="float:left;margin-bottom:10px;" class="btn btn-primary">+ Add New</button>
+						<button onclick="nextEntry(1);" type="button" style="float:right;margin-bottom:10px;" class="btn btn-primary" id="section">Next Category</button>
+						<button onclick="nextEntry(0);" type="button" style="float:right;margin-bottom:10px;margin-right:5px" class="btn btn-primary" id="section">Previous Category</button>	
+							<div class="table-responsive">          
+								<table id="table-3" class="table table-bordered table-hover">
+									<thead>
+									  <tr class="table table-info">
+										<th><h3>SOURCE</h3></th>
+										<th><h3>AMOUNT($)</h3></th>
+									  </tr>
+									</thead>
+									<tbody>
+									<tr style="background-color: salmon">
+										<td><h3><label id="utilities-src-1">Gas & Electricity</label></h3></td>
+										<td><input type="text" style="width:200px;" class="form-control input-sm utilities_count" id="utilities-amt-1"/></td>
+									</tr>
+									<tr style="background-color: salmon">
+									    <td><h3><label id="utilities-src-2">WiFi</label></h3></td>
+										<td><input type="text" style="width:200px;" class="form-control input-sm utilities_count" id="utilities-amt-2"/></td>
+									</tr>
+									<tr>
+										<td><h3><label style="float:right;" >Total</label></h3></td>
+										<td><input type="text" style="width:200px;" class="form-control input-sm" id="total-3"/></td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+							<div style="margin-top:20px;margin-bottom:20px;" id="lower_buttons" align="center"><button type="button" onclick="get_values(0);" class="btn btn-info btn-lg">Draw Expenditure Chart</button></div>
+
+						</div>
+						
+						
+						<div class="food next" id="5" hidden=true>
+						<h1 style="color:#006599;" align="center">FOOD</h1>
+						<button onclick="add_new_field(4);" type="button" style="float:left;margin-bottom:10px;" class="btn btn-primary">+ Add New</button>
+						<button onclick="nextEntry(1);" type="button" style="float:right;margin-bottom:10px;" class="btn btn-primary" id="section">Next Category</button>
+						<button onclick="nextEntry(0);" type="button" style="float:right;margin-bottom:10px;margin-right:5px" class="btn btn-primary" id="section">Previous Category</button>						
+						<div class="table-responsive">          
+								<table id="table-4" class="table table-bordered table-hover">
+									<thead>
+									  <tr class="table table-info">
+										<th><h3>SOURCE</h3></th>
+										<th><h3>AMOUNT($)</h3></th>
+									  </tr>
+									</thead>
+									<tbody>
+									<tr style="background-color: salmon">
+										<td><h3><label id="food-src-1">Food</label></h3></td>
+										<td><input type="text" style="width:200px;" class="form-control input-sm food_count" id="food-amt-1"/></td>
+									</tr>
+									<tr>
+										<td><h3><label style="float:right;" >Total</label></h3></td>
+										<td><input type="text" style="width:200px;" class="form-control input-sm" id="total-4"/></td>
+									</tr>									
+									</tbody>
+								</table>
+							</div>
+							<div style="margin-top:20px;margin-bottom:20px;" id="lower_buttons" align="center"><button type="button" onclick="get_values(0);" class="btn btn-info btn-lg">Draw Expenditure Chart</button></div>
+
+						</div>
+						
+						
+						<div class="others next" id="6" hidden=true>
+						<h1 style="color:#006599;" align="center">OTHERS</h1>
+						<button onclick="add_new_field(5);" type="button" style="float:left;margin-bottom:10px;" class="btn btn-primary">+ Add New</button>
+						<button onclick="nextEntry(0);" type="button" style="float:right;margin-bottom:10px;margin-right:5px" class="btn btn-primary" id="section">Previous Category</button>
+							<div class="table-responsive">          
+								<table id="table-5" class="table table-bordered table-hover">
+									<thead>
+									  <tr class="table table-info">
+										<th><h3>SOURCE</h3></th>
+										<th><h3>AMOUNT($)</h3></th>
+									  </tr>
+									</thead>
+									<tbody>
+									<tr>
+										<td><input type="text" style="width:200px;" class="form-control input-sm" id="others-src-1"/></td>
+										<td><input type="text" style="width:200px;" class="form-control input-sm others_count" id="others-amt-1"/></td>
+									</tr>
+									<tr>
+										<td><h3><label style="float:right;" >Total</label></h3></td>
+										<td><input type="text" style="width:200px;" class="form-control input-sm" id="total-5"/></td>
+									</tr>
+
+									</tbody>
+								</table>
+							</div>
+							<div style="margin-top:20px;margin-bottom:20px;" id="lower_buttons" align="center"><button type="button" onclick="get_values(0);" class="btn btn-info btn-lg">Draw Expenditure Chart</button></div>
+						</div>
+						<div class="calculate_hourly_rate next" id="7" hidden=true>
+							<h1 style="color:#006599;" align="center">Calculate Hourly Rate</h1>
+								<div class="table-responsive">          
+									<table id="table-7" class="table table-bordered table-hover">
+										<thead>
+										  <tr class="table table-info">
+											<th><h3>Hours</h3></th>
+											<th><h3>Rate</h3></th>
+											<th><h3>AMOUNT($)</h3></th>
+										  </tr>
+										</thead>
+										<tbody>
+										<tr>
+											<td><input type="text" style="width:200px;" class="form-control input-sm" id="calculate_hourly_rate-src-1"/></td>
+											<td><input type="text" style="width:200px;" class="form-control input-sm calculate_hourly_rate_count" id="calculate_hourly_rate-amt-1"/></td>
+											<td><input type="text" style="width:200px;" class="form-control input-sm calculate_hourly_rate_count" id="calculate_hourly_rate-wage-1"/></td>
+										</tr>
+										<tr>
+											<td><h3><label style="float:right;" >Total</label></h3></td>
+											<td><input type="text" style="width:200px;" class="form-control input-sm" id="total-7"/></td>
+										</tr>
+	
+										</tbody>
+									</table>
+								</div>
+								<div style="margin-top:20px;margin-bottom:20px;" id="lower_buttons" align="center"><button type="button" onclick="get_values(0);" class="btn btn-info btn-lg">Draw Expenditure Chart</button></div>
+							</div>
+					</div>
+						
+                            <!-- About section -->
+                            
+                            <footer>
+                                <!--<p class="tm-copyright-p">Copyright &copy; <span class="tm-current-year">2017</span> Your Company 
+                                
+                                | Designed by <a href="http://www.templatemo.com" target="_parent">templatemo</a></p>-->
+                            </footer>
+                    </div>  
+                        
+                </div> <!-- Right column: content -->
+            </div>
+        </div> <!-- row -->
+    </div> <!-- container -->
+                
+        <!-- load JS files
+        <script src="js/jquery-1.11.3.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
+		<script src="js/main.js"></script>
+     
+</body>
+</html>
